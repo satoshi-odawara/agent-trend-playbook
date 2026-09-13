@@ -91,16 +91,18 @@ candidates/TEMPLATE.md と verifications/TEMPLATE.md を追加してコミット
 候補を1つ選び、candidates/ に記載する。人間主導。
 
 **タスク**
-- [ ] agent-trend-data/latest/metrics.json が更新されるのを確認する
-- [ ] 候補を1つ選定し candidates/YYYY-MM-DD-topic.md に記載する
+- [x] agent-trend-data/latest/metrics.json が更新されるのを確認する
+- [x] 候補を1つ選定し candidates/YYYY-MM-DD-topic.md に記載する
 
 **完了条件**: candidates/ に候補ファイルが1件作成されている。
 
 **依存**: なし
 
-**備考**: 2026-09-13時点で agent-trend-data/latest/metrics.json は空
-(.gitkeepのみ)。agent-trend-radarのデータ収集が稼働し metrics.json が
-揃うまで着手を待つ方針とした。
+**対応内容(2026-09-13)**: agent-trend-radarのデータ収集が完了し
+metrics.json(20リポジトリ分)が揃った。「ルール化(CLAUDE.md等)と
+ツール化(skills等)の境界線」を最初のテーマとして選定し、ベンチマーク
+指標・調査方針・記事構成のたたき台とあわせて
+candidates/2026-09-13-rule-vs-tool-boundary.md に記載した。
 
 ## #3 検証の実施
 
