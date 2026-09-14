@@ -110,13 +110,27 @@ candidates/2026-09-13-rule-vs-tool-boundary.md に記載した。
 して残す。人間主導。
 
 **タスク**
-- [ ] 候補を実際に試す
-- [ ] verifications/YYYY-MM-DD-topic/log.md に「何を試したか/結果/所感」
+- [x] 候補を実際に試す
+- [x] verifications/YYYY-MM-DD-topic/log.md に「何を試したか/結果/所感」
       と根拠にしたagent-trend-dataのスナップショット日付を記載する
 
 **完了条件**: verifications/ に検証ログが1件作成されている。
 
 **依存**: #2
+
+**対応内容(2026-09-14)**: OpenHands/OpenHands, Significant-Gravitas/AutoGPT,
+continuedev/continue, cline/cline, nuxt/nuxt の5件について実際のAGENTS.md/
+CLAUDE.mdとskills/commands/hooksを読み、verifications/2026-09-14-rule-vs-tool-boundary/log.md
+に記録した。定量データのみで立てた仮説(candidates/のOpenHands vs AutoGPT
+対比等)が5件中3件で修正を要することが判明し、candidates/2026-09-13-rule-vs-tool-boundary.md
+の初期観察・記事構成も更新した。
+
+**追記(2026-09-14)**: 検証で見つかった不整合(skills検出漏れ、
+指示文書のスコープ未計測、統制の強さの指標化)をradar側にissue案として
+提示し、対応された(SCHEMA v1.2)。副次効果でcontinuedev/continueの
+`has_agent_instructions`が0→1に訂正されたため、verifications/2026-09-14-rule-vs-tool-boundary/log.md
+とcandidates/2026-09-13-rule-vs-tool-boundary.mdの両方を最新データで
+再更新した。
 
 ## #4 記事ドラフト作成
 
