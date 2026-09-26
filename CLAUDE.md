@@ -44,6 +44,7 @@ candidates/       # 検証してみたい候補のストック(YYYY-MM-DD-topic.
 verifications/    # 実際にやってみた記録(YYYY-MM-DD-topic/log.md)
 drafts/           # 記事の下書き(YYYY-MM-DD-topic.md)。完成後にhubのarticles/へ
 RETROSPECTIVE.md  # パイプラインを1サイクル回すたびの振り返り記録(内部向け、追記のみ)
+RING.md           # プラクティスの採否判断(リング)。現在の状態表+変更履歴(追記のみ)
 ```
 
 ## 検証ログの方針
@@ -81,6 +82,8 @@ RETROSPECTIVE.md  # パイプラインを1サイクル回すたびの振り返�
   (Projects)側で行う
 - パイプラインを1サイクル回すたびの振り返りは `RETROSPECTIVE.md` に追記する
   (記事化はしない、内部向けの学びの記録)
+- プラクティスの採否判断(リング)は `RING.md` に記録する。現在の状態は
+  表を上書き更新し、変更履歴は追記のみで残す
 
 ---
 
