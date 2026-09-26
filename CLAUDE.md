@@ -28,7 +28,8 @@ agent-trend-data に蓄積されたサーベイデータから「試す価値が
    パターン・ツールを拾い `candidates/` に置く
 2. **検証**: 実際に手を動かして試す。**ここは人間主導**。結果を `verifications/` に
    軽量ログとして残す
-3. **記事ドラフト生成**: 検証ログ + hubのデータを入力に、記事の初稿を `drafts/` に書く
+3. **記事ドラフト生成**: 検証ログ + hubのデータを入力に、記事の初稿を `drafts/` に書く。
+   **初稿はClaude Codeが書き、人間が事実確認・推敲・最終判断を行う**
 4. **公開**: 完成原稿を `agent-trend-data/articles/` に反映する
 
 ## 現在のスコープ(MVP)
@@ -41,7 +42,7 @@ agent-trend-data に蓄積されたサーベイデータから「試す価値が
 ```
 candidates/       # 検証してみたい候補のストック(YYYY-MM-DD-topic.md)
 verifications/    # 実際にやってみた記録(YYYY-MM-DD-topic/log.md)
-drafts/           # 記事の下書き。完成後にhubのarticles/へ
+drafts/           # 記事の下書き(YYYY-MM-DD-topic.md)。完成後にhubのarticles/へ
 RETROSPECTIVE.md  # パイプラインを1サイクル回すたびの振り返り記録(内部向け、追記のみ)
 ```
 
@@ -53,6 +54,13 @@ RETROSPECTIVE.md  # パイプラインを1サイクル回すたびの振り返�
   - 所感(期待と違った点、実際に使えそうかどうか)
 - 検証ログには、根拠にした `agent-trend-data` のスナップショット日付を記載し、
   トレーサビリティを確保する
+
+## ドラフトの方針
+- 冒頭にfront matterを置く。hubの `articles/` にそのまま移せる形にしておく
+  (`title`, `based_on_snapshot`, `verification_log`, `status`, `external_url`。
+  `external_url` は公開後に記入)
+- 分量は3,000〜4,000字を目安にする(平日夜1〜2時間で推敲できる長さ)
+- 検証した件数・範囲を明記し、範囲を超えた一般化をしない
 
 ## データへの要望
 検証や記事作成の過程で「このデータがあれば、もっと強い主張ができた」と気づいた

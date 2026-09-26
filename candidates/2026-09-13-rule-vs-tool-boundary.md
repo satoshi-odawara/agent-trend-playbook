@@ -108,7 +108,7 @@ continuedev/continueがskills_count=1の例外だったが、それ自体が
 
 metrics.json 側の指標(定量・既存データで取得可能):
 1. **文書量**: `agent_doc_char_count` / `agent_doc_heading_count`
-2. **言及トピックの幅**: `agent_doc_mentions_*` の8フラグのうち何個立って
+2. **言及トピックの幅**: `agent_doc_mentions_*` の9フラグのうち何個立って
    いるか(トピックカバレッジ)
 3. **ツール化の程度**(2026-09-14、データ要望対応により追加): `has_skills_dir`
    / `skills_count` / `has_custom_commands` / `custom_commands_count` /
