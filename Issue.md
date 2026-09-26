@@ -160,6 +160,11 @@ CLAUDE.mdを調査対象と同じ指標で手動採点した。その過程で�
 
 **依存**: #4
 
+**対応内容(2026-09-26)**: drafts/2026-09-20-rule-vs-tool-boundary.md の内容を
+初稿として承認し、agent-trend-data/articles/2026-09/rule-vs-tool-boundary.md
+に反映してpush(agent-trend-data c5c06b1)。statusはdraftのまま据え置き、
+外部(Zenn/note等)への公開時にexternal_urlとあわせて更新する運用とする。
+
 ## #6 振り返り
 
 **概要**: 1本通してみてどの工程に時間がかかったかを整理し、次に自動化・
