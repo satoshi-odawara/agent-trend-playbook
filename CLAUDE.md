@@ -42,6 +42,7 @@ agent-trend-data に蓄積されたサーベイデータから「試す価値が
 candidates/       # 検証してみたい候補のストック(YYYY-MM-DD-topic.md)
 verifications/    # 実際にやってみた記録(YYYY-MM-DD-topic/log.md)
 drafts/           # 記事の下書き。完成後にhubのarticles/へ
+RETROSPECTIVE.md  # パイプラインを1サイクル回すたびの振り返り記録(内部向け、追記のみ)
 ```
 
 ## 検証ログの方針
@@ -70,6 +71,8 @@ drafts/           # 記事の下書き。完成後にhubのarticles/へ
 - Issueで作業単位を管理する
 - 実装はClaude Codeに委譲する。方針検討・データ解釈はClaudeチャット
   (Projects)側で行う
+- パイプラインを1サイクル回すたびの振り返りは `RETROSPECTIVE.md` に追記する
+  (記事化はしない、内部向けの学びの記録)
 
 ---
 
