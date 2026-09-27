@@ -283,18 +283,62 @@ continuedev/continueのhas_agent_instructionsが後日0→1に訂正された経
 踏まえる。
 
 **タスク**
-- [ ] 対象範囲を決める(公開済み記事のみか、drafts/candidates/verifications
+- [x] 対象範囲を決める(公開済み記事のみか、drafts/candidates/verifications
       全部か)
-- [ ] 確認方法を決める(hubのsnapshots/内の該当日付JSONと最新snapshotを
+- [x] 確認方法を決める(hubのsnapshots/内の該当日付JSONと最新snapshotを
       直接diffする。現時点ではradarの自動差分機能を前提にしない)
-- [ ] 頻度を決める(記事公開直前のみか、定期的か)
-- [ ] 1本目の記事を対象に試しに確認し、値が変わっている項目がないか確認する
+- [x] 頻度を決める(記事公開直前のみか、定期的か)
+- [x] 1本目の記事を対象に試しに確認し、値が変わっている項目がないか確認する
 
 **完了条件**: 確認方法・頻度が決まり、1本目の記事で試した結果(変化の
 有無)が記録されている。手動diffが運用負荷として重すぎると分かった場合は、
 その旨を記録し、radar側へのIssue化(R3相当)を検討する材料とする。
 
 **依存**: #6
+
+**対応内容(2026-09-27)**: CLAUDE.mdに「根拠の陳腐化チェック」節を新設した。
+- 対象範囲: `drafts/`と`agent-trend-data/articles/`のみ(candidates/
+  verificationsは既存の追記運用で足りるため対象外)
+- 確認方法: 記事が引用した「リポジトリ+フィールド」に絞ったdiff。恒久的な
+  スクリプトは作らず都度手で実行する
+- 頻度: 記事の`status`が`draft`→`published`になるタイミングで1回
+
+**実データでの確認(実施済み)**: hubに新しいsnapshot(`2026-09-27`、20→28
+リポジトリに拡大、schema v1.3で`agent_doc_llm_cache_key`
+`llm_classification`が追加)ができたため、記事1本目
+(rule-vs-tool-boundaryの`based_on_snapshot: 2026-09-14`)との間で、
+記事本文が引用した5リポジトリ(OpenHands, AutoGPT, continuedev/continue,
+cline, nuxt)の該当フィールドを実際にdiffした。
+
+- **実際に差分あり、記事の記述と食い違う**: `OpenHands/OpenHands`の
+  `agent_doc_char_count`が117,554→6,269、`agent_doc_heading_count`が32→8、
+  `skills_count`が3→9に変化。記事本文は「OpenHandsは11万7千字でも大半が
+  手順型だった」「OpenHands(skills 3件)」と明記しており、この2つの具体的
+  記述が現在のデータと食い違う状態になっている。`agent_doc_count`は1のまま
+  (対象ファイル数は変わっていない)なので、同一ファイルの中身自体が縮小
+  したとみられるが、上流の実際の変更か収集方法の変更かは切り分けていない
+  (未調査)
+- **差分はあるが記事の記述は無傷**: `Significant-Gravitas/AutoGPT`は
+  `agent_doc_char_count`(3,822→6,331)・`agent_doc_heading_count`(6→7)が
+  変化したが、記事が明記する「skills 10件」は`skills_count`10のまま変化
+  なし。`cline/cline`の`skills_count`(7→8)、`continuedev/continue`の
+  `agent_doc_mentions_pr_review`(0→1、ただし`agent_doc_llm_cache_key`が
+  旧snapshotに存在しないため文書変更かLLM分類のゆらぎかは判別不能)も、
+  記事本文で数値として明記していない項目のため、記事の記述への影響なし
+- **記事のSection 2の集計(20件中17/14/13件等)**: 元の20リポジトリに絞って
+  最新snapshotで再集計しても値は完全に一致(変化なし)。母集団が28件に
+  増えたことは、記事が明示的に「2026-09-14時点」と範囲を区切っているため
+  それ自体は誤りではないが、読者が現在のmetrics.jsonも20件のままだと
+  誤解する可能性はある
+
+確認方法は「対象を絞ればdiffは軽量で、実際に意味のある食い違いを検出できる」
+ことが実証され、運用負荷が重すぎるという判断には至らなかった(radar側への
+Issue化は不要と判断)。未完のタスクなし。
+
+**新Issue案(未起票、確認待ち)**:
+- 提案C: 公開済み記事`agent-trend-data/articles/2026-09/rule-vs-tool-boundary.md`
+  の「OpenHandsは11万7千字」「OpenHands(skills 3件)」という2箇所の具体的
+  記述が最新データと食い違っている。記事に訂正・注記を入れるか判断する
 
 ## #10 レーダー図生成skillを自作するかを検討する
 

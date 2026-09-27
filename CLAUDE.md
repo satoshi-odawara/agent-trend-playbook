@@ -63,6 +63,22 @@ RING.md           # プラクティスの採否判断(リング)。現在の状�
 - 分量は3,000〜4,000字を目安にする(平日夜1〜2時間で推敲できる長さ)
 - 検証した件数・範囲を明記し、範囲を超えた一般化をしない
 
+## 根拠の陳腐化チェック
+- 対象範囲: `drafts/`と`agent-trend-data/articles/`が引用した具体的な数値・
+  状態のみ(candidates/verificationsは対象外。既に見つかり次第その場で
+  追記・訂正する運用が定着しているため)
+- 確認方法: 記事のfront matterの`based_on_snapshot`と、hubの最新snapshot
+  (`agent-trend-data/manifest.json`の最後の日付)の間で、本文が引用して
+  いる「リポジトリ名+フィールド」だけに絞ってdiffする。恒久的なスクリプトは
+  作らず、都度Pythonのワンライナー等で確認する(実施例はIssue #9の対応内容
+  参照)
+- `agent_doc_mentions_*`系4フィールドは、両スナップショットに
+  `agent_doc_llm_cache_key`(v1.3で追加)があれば、それが同じ値かどうかで
+  「文書自体の変更」か「LLM分類のゆらぎ」かを機械的に区別できる。片方の
+  スナップショットにこのキーがない場合は判別できない
+- 頻度: 記事のstatusを`draft`→`published`に更新するタイミングで1回確認する。
+  定期実行はしない
+
 ## データへの要望
 検証や記事作成の過程で「このデータがあれば、もっと強い主張ができた」と気づいた
 場合、`agent-trend-data/data-requests/pending/` にテンプレートに沿ったMarkdownを
